@@ -105,6 +105,20 @@ class Servicio:
     def guardar(self, clave, valor):
         self.__repo.guardar(clave, valor)  # Fachada: delega sin exponer
 
+20.class ContadorSeguro:
+    	def __init__(self):
+        		self._n = 0  # atributo protegido
+
+    	def inc(self):
+        		self._n += 1         
+        		self.__log()         
+
+    	@property
+    	def n(self):
+        		return self._n     
+
+    	def __log(self):
+        		print("tick")      
 
 
  
