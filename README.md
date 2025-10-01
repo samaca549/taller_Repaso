@@ -1,13 +1,13 @@
 # taller_Repaso
 #1. En el primer punto me pregunta que atributos son accesibles desde A y la respuesta correcta fueron:
-#   A.X, A._y, a._A__z en este caso se este caso se trabaja con atributos publicos, protegidos por convención y privados y los ejemplos anteriores permiten comprender como utilizarlos
+  A.X, A._y, a._A__z en este caso se este caso se trabaja con atributos publicos, protegidos por convención y privados y los ejemplos anteriores permiten comprender como utilizarlos
 #2.En el segundo punto me piden la salida de un codigo, se utiliza hasattr que su estructura (a, '__secret') esta siendo mal utilizada porque se esta tratando de acceder a un atributo privado por fuera de la #clase de manera incorrecta debido a esto me devolvera falsa, y en el segundo caso se utiliza 'a._A__secret' aplicando de forma correcta el name mangling y devolviendo true.
 
 #3. Me solicita responder falso y verdadero:
    El prefijo _ impide el acceso desde fuera de la clase. falso si sigo la estructura objeto._atributo podre acceder a el (como en el ejercicio 1)
    El prefijo __ hace imposible acceder al atributo. falso el doble guion bajo lo convierte en un atributo privado pero eso no significa que no pueda ser utilizado por fuera de la clase si se utiliza bien el name mangling es posible acceder a el como en el ejercicio 1.
    El name mangling depende del nombre de la clase. verdadero una parte fundamental del name mangling es el nombre original porque es uno de los componentes de su estructura, objeto._CLASE__atributo
-4.En el 4 punto consiste en lectura del codigo
+#4.En el 4 punto consiste en lectura del codigo
   En este caso se esta implementado el concepto de heriencia y de subclases, en este caso puntual en el constructor de la primera clase se define un atributo protegido por convencion y se utiliza en la clase hija, en este caso no hay ningun problema por ser protegido, en el caso puntual de porque no hay un error de acceso es porque dentro de la clase hija hay una funcion que retorna el atributo protegido, en este caso al     final hay un print que muestra el valor retornado en la función reveal.
 5.En el punto 5 me piden analizar un codigo a diferencia del anterior, en este se encuentra un atributo privado que impide acceder con su nombre original por fuera de la clase incluyendo las clases hijas, en este caso puntual se genera un primer atributo privado que adquiere el nombre de self._Base__v (si se quiere acceder a el por fuera de la clase) y en la clase hija se vuelve a crear un atributo privado con el nombre     self.__v en este caso se diferencia con el primero porque un elemento trascendental en el name mangling es el nombre de la clase en que proviene en este caso seria:
   primer objeto privado=self._Base__v y el segundo se puede acceder solo son el self.__v porque esta dentro de la clase en que fue creada, la funcion show me retorna los valores de estos atributos privados y por esta situacion en el print no se generan errores.
