@@ -1,1 +1,103 @@
+11.
+class Cuenta:
+
+    def __init__(self, saldo): 
+          self._saldo = 0 
+          self.saldo = saldo 
+   @property
+    	    def saldo(self):
+          return self._saldo
+   @saldo.setter
+    	    def saldo(self, valor):
+        		  if valor >= 0:
+            		  self._saldo = valor
+        		  else:
+            		  raise ValueError("No puede ser negativo") 
+13. En este punto me pedian convertir f en atributo de solo lectura para lograr esto es necesario apoyarme del property  y utilizar la formulada proporcionada para mas tarde remplazar la c en la formula por self._c (Atributo protegido por convecion ) y de esta manera devuelve el valor.
+
+class Termometro:
+  def __init__(self, temperatura_c):
+    self._c = float(temperatura_c)
+  @property
+    def temperatura_f(self): 
+    return self._c * 9/5 + 32
+    
+14.
+class Usuario:
+      def __init__(self, nombre):
+        self.nombre = nombre
+
+      @property
+      def nombre(self):
+        return self._nombre
+
+      @nombre.setter
+      def nombre(self, valor):
+        if isinstance(valor, str):
+            self._nombre = valor
+        else:
+            raise TypeError("El nombre debe ser texto")
+15.
+class Registro:
+  def __init__(self):
+    self.__items = []
+  def add(self, x):
+    self.__items.append(x)
+  @property
+  def items(self):
+        return tuple(self.__items)
+
+16.  class Motor:
+      def __init__(self, velocidad):
+        self.velocidad = velocidad
+
+      @property
+      def velocidad(self):
+        return self._velocidad
+
+      @velocidad.setter
+        def velocidad(self, valor):
+          if 0 <= valor <= 200:
+            self._velocidad = valor
+          else:
+            raise ValueError("La velocidad debe estar entre 0 y 200")
+17. En una API pública de una librería, eligen entre las dos opciones depende del nivel de seguridad que deseo según el programa, usar _atributo indica que es interno y no debería ser accedido por fuera de la clase, es posible utilizarlo cuando quiero proteger un dato pero permitir utilizarlo por ejemplo en una subclase.
+Usar __atributo activa el name mangling que renombra al atributo para asegurarlo, esto impide el acceso directo y protege el dato, es recomendable usarlo cuando el atributo contiene información seguro o sensible.
+17.Se define una lista protegida por convención (_data), pero el método get_data() la expone directamente permitiendo que cualquier código externo modifique el contenido.
+18.El atributo __x está definido como privado en la clase A mediante doble guión bajo. Esto activa el name mangling, que renombra internamente el atributo como _A__x para protegerlo. Por lo tanto, cuando la subclase B intenta acceder a self.__x está mal.
+19.class _Repositorio:
+    def __init__(self):
+        self._datos = {}
+
+    def guardar(self, k, v):
+        self._datos[k] = v
+
+    def _dump(self):
+        return dict(self._datos)
+
+
+class Servicio:
+    def __init__(self):
+        self.__repo = _Repositorio()  # Composición con atributo privado
+
+    def guardar(self, clave, valor):
+        self.__repo.guardar(clave, valor)  # Fachada: delega sin exponer
+
+20.class ContadorSeguro:
+    	def __init__(self):
+        		self._n = 0  # atributo protegido
+
+    	def inc(self):
+        		self._n += 1         
+        		self.__log()         
+
+    	@property
+    	def n(self):
+        		return self._n     
+
+    	def __log(self):
+        		print("tick")      
+
+
+ 
 
