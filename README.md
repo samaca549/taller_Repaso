@@ -32,7 +32,17 @@
    s = S()
    print(s._S__data)
    <br>
-#10.El  nombre mas probable de salir  es _D__a porque hay un for que me recorre todo el dir en donde me muestran los atributos, metodos disponibles y despues hay un if que me muestra los elementos que contengan la letra siguiendo esta logica sale _D__a porque __a solo es posible de acceder a esta forma si es dentro de la clase en la que fue creada y a es la opcion con menos sentido.
+#10.
+class D:  
+  def __init__(self):  
+    self.__a = 1  
+    self._b = 2  
+    self.c = 3  
+d = D()  
+names = [n for n in dir(d) if 'a' in n] 
+print(names)  
+El  nombre mas probable de salir  es _D__a porque hay un for que me recorre todo el dir en donde me muestran los atributos, metodos disponibles y despues hay un if que me muestra los elementos que contengan la letra siguiendo esta logica sale _D__a porque __a solo es posible de acceder a esta forma si es dentro de la clase en la que fue creada y a es la opcion con menos sentido.
+<br>
 <br>
 #11.
 class Cuenta:
@@ -49,7 +59,9 @@ class Cuenta:
             		  self._saldo = valor
         		  else:
             		  raise ValueError("No puede ser negativo") 
-13. En este punto me pedian convertir f en atributo de solo lectura para lograr esto es necesario apoyarme del property  y utilizar la formulada proporcionada para mas tarde remplazar la c en la formula por self._c (Atributo protegido por convecion ) y de esta manera devuelve el valor.
+   <br>
+   <br>
+12. En este punto me pedian convertir f en atributo de solo lectura para lograr esto es necesario apoyarme del property  y utilizar la formulada proporcionada para mas tarde remplazar la c en la formula por self._c (Atributo protegido por convecion ) y de esta manera devuelve el valor.
 
 class Termometro:
   def __init__(self, temperatura_c):
@@ -57,8 +69,10 @@ class Termometro:
   @property
     def temperatura_f(self): 
     return self._c * 9/5 + 32
+    <br>
+   <br>
     
-14.
+13.
 class Usuario:
       def __init__(self, nombre):
         self.nombre = nombre
@@ -73,17 +87,24 @@ class Usuario:
             self._nombre = valor
         else:
             raise TypeError("El nombre debe ser texto")
-15.
-class Registro:
-  def __init__(self):
-    self.__items = []
-  def add(self, x):
-    self.__items.append(x)
-  @property
-  def items(self):
-        return tuple(self.__items)
+Este código define una clase Usuario que controla el acceso al nombre mediante propiedades. Al asignar un valor, se valida que sea texto; si no, lanza un error. Así se protege la lógica interna y se asegura que el atributo siempre sea correcto.
+<br>
+   <br>
+14) Encapsulación de colección 
+Expón una vista de solo lectura de una lista interna. 
+class Registro: 
+  def __init__(self): 
+    self.__items = [] 
+  def add(self, x): 
+    self.__items.append(x) 
+@property 
+def items(self): 
+  return tuple(self.__items)
+Este código define una clase Registro que guarda elementos en una lista privada. El método add permite agregar ítems, y la propiedad items devuelve una versión inmutable (tupla) de esa lista, protegiendo el contenido original contra modificaciones externas.
+<br>
+   <br>
 
-16.  class Motor:
+15.  class Motor:
       def __init__(self, velocidad):
         self.velocidad = velocidad
 
@@ -97,10 +118,18 @@ class Registro:
             self._velocidad = valor
           else:
             raise ValueError("La velocidad debe estar entre 0 y 200")
-17. En una API pública de una librería, eligen entre las dos opciones depende del nivel de seguridad que deseo según el programa, usar _atributo indica que es interno y no debería ser accedido por fuera de la clase, es posible utilizarlo cuando quiero proteger un dato pero permitir utilizarlo por ejemplo en una subclase.
+     <br>
+   <br>
+16. En una API pública de una librería, eligen entre las dos opciones depende del nivel de seguridad que deseo según el programa, usar _atributo indica que es interno y no debería ser accedido por fuera de la clase, es posible utilizarlo cuando quiero proteger un dato pero permitir utilizarlo por ejemplo en una subclase.
 Usar __atributo activa el name mangling que renombra al atributo para asegurarlo, esto impide el acceso directo y protege el dato, es recomendable usarlo cuando el atributo contiene información seguro o sensible.
+<br>
+   <br>
 17.Se define una lista protegida por convención (_data), pero el método get_data() la expone directamente permitiendo que cualquier código externo modifique el contenido.
+<br>
+   <br>
 18.El atributo __x está definido como privado en la clase A mediante doble guión bajo. Esto activa el name mangling, que renombra internamente el atributo como _A__x para protegerlo. Por lo tanto, cuando la subclase B intenta acceder a self.__x está mal.
+<br>
+   <br>
 19.class _Repositorio:
     def __init__(self):
         self._datos = {}
@@ -118,7 +147,8 @@ class Servicio:
 
     def guardar(self, clave, valor):
         self.__repo.guardar(clave, valor)  # Fachada: delega sin exponer
-
+<br>
+   <br>
 20.class ContadorSeguro:
     	def __init__(self):
         		self._n = 0  # atributo protegido
